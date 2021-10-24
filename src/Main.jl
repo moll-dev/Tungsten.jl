@@ -1,21 +1,11 @@
-using GLFW
+using Alpha
 
-# Create a window and its OpenGL context
-window = GLFW.CreateWindow(640, 480, "GLFW.jl")
+# TODO: Wrap this in an application class
+window = Window(200, 300, "hello GL!")
+running = true
 
-# Make the window's context current
-GLFW.MakeContextCurrent(window)
-
-# Loop until the user closes the window
-while !GLFW.WindowShouldClose(window)
-
-	# Render here
-
-	# Swap front and back buffers
-	GLFW.SwapBuffers(window)
-
-	# Poll for and process events
-	GLFW.PollEvents()
+while(running)
+    glClearColor(1, 0, 1, 1)
+    glClear(GL_COLOR_BUFFER_BIT)
+    OnUpdate(window)
 end
-
-GLFW.DestroyWindow(window)
