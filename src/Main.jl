@@ -1,4 +1,4 @@
-using Alpha
+using Tungsten
 
 # TODO: Wrap this in an application class
 window = Window(200, 300, "hello GL!")
