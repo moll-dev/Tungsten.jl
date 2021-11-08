@@ -1,5 +1,7 @@
 # History Rhymes
 
+10/27/21
+
 Dear reader, has this ever happened to you? You're a programmer, a coder, a CSS ninja, what ever, and you happen to play video games as well. And you think to yourself "holy shit, I can program, and games are basically big programs, I can make a game!" Then you try to install Visual Studio 2008 because all the AAA games are made with C++ and you're not quite familiar with C++, but hey it's basically C right? Then you slog through OpenGL for the first time, and you get that first glorious triangle on the screen. Hell, you don't even have GLFW event handling setup correctly, so you have to open Task Manager and kill your precious program manually. 
 
 

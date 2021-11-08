@@ -9,6 +9,8 @@ import GLMakie: GLAbstraction
 const GLA = GLAbstraction
 export GLA
 
+include("input.jl")
+export Keyboard, Mouse
 
 include("events.jl")
 export Event, WindowCloseEvent, WindowResizeEvent
