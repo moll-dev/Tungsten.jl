@@ -17,7 +17,7 @@ include("window.jl")
 export Window, OnUpdate
 
 include("application.jl")
-export Application
+export Application, OnEvent, Run
 
 
 

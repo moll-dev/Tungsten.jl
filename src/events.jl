@@ -12,3 +12,4 @@ struct WindowResizeEvent <: Event
     width::Int
     height::Int
 end
+

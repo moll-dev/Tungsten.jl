@@ -4,7 +4,6 @@ mutable struct Window
     height::Int
     title::String
     vsync::Bool
-    eventCallBack::Function
 end
 
 function Window(width::Int, height::Int, title::String)
@@ -17,11 +16,8 @@ function Window(width::Int, height::Int, title::String)
     end
 
     GLFW.MakeContextCurrent(window)
-    GLFW.SetWindowSizeCallback(window, (window, width, height) -> begin
-        window.eventCallBack(WindowResizeEvent(width, height))
-    end)
 
-    Window(window, width, height, title, true, () -> ())
+    Window(window, width, height, title, true)
 end
 
 function Shutdown(window::Window)
