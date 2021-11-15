@@ -7,7 +7,7 @@ mutable struct Window
 end
 
 function Window(width::Int, height::Int, title::String)
-    @info "Creating a window [$title]"
+    @info "Creating a window [$title : $width x $height]"
     window = try 
         GLFW.CreateWindow(width, height, title)
     catch e
@@ -20,7 +20,7 @@ function Window(width::Int, height::Int, title::String)
     Window(window, width, height, title, true)
 end
 
-function Shutdown(window::Window)
+function destroy!(window::Window)
     @info "Shutting down window" 
     GLFW.DestroyWindow(window.glWindow)
 end

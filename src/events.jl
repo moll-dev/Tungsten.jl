@@ -1,5 +1,5 @@
 """
-For now we'll just use the AsapScheduler for Rocket.jl
+Currently, just using callbacks, not Rocket.jl
 """
 
 abstract type Event end
@@ -11,12 +11,12 @@ struct WindowResizeEvent <: Event
     height::Int
 end
 
-struct KeyEvent
+struct KeyEvent <: Event
     key::Keyboard.Button
     action::Keyboard.Action
 end
 
-struct MouseButtonEvent
+struct MouseButtonEvent <: Event
     button::Mouse.Button
     action::Mouse.Action
 end
