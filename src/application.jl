@@ -1,8 +1,7 @@
-# Maybe this is overkill for now
-
-
+# Maybe this is overkill...
 mutable struct Application
     window::Window
+    layers::LayerStack
     is_running::Bool
     events::Dict{Symbol, <: Subject}
 end
@@ -13,12 +12,7 @@ function Application(title)
 
     events = Dict{Symbol, Subject}()
 
-    # Maybe not the best place to setup listeners? TODO: Use Actors
-    push!(events, :WindowResizeEvent => Subject(WindowResizeEvent))
-    subscribe!(events[:WindowResizeEvent], logger())
-
-    # TODO: Kind of a weird circular reference here? Might need to fix it.
-    application = Application(window, true, events)
+    application = Application(window, LayerStack(), true, events)
     registerGLFWCallbacks(application, window)
     return application
 end
@@ -39,12 +33,18 @@ function registerGLFWCallbacks(application::Application, window::Window)
     mousebutton(window, button, action, mods) = OnEvent(application, MouseButtonEvent(Mouse.Button(Int(button)), Mouse.Action(Int(action))))
     GLFW.SetMouseButtonCallback(glWindow, mousebutton) 
 end
+
+
 # Entry point!
 # TODO: Catch crtl-c interrupts
 function Run(application::Application)
     try
         while application.is_running
             OnUpdate(application.window)
+
+            for layer in application.layers
+                OnUpdate(layer)
+            end
         end
     finally
         OnEvent(application, WindowCloseEvent())
@@ -59,5 +59,9 @@ function OnEvent(app::Application, e::WindowCloseEvent)
         # TODO: Remap this function call to be something more julian?
         destroy!(app.window)
         app.is_running = false
+
+        for layer in app.layers
+            state = OnEvent(layer, e)
+        end
     end
 end

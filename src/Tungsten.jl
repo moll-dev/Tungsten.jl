@@ -15,6 +15,9 @@ export Keyboard, Mouse
 include("events.jl")
 export Event, WindowCloseEvent, WindowResizeEvent
 
+include("layer.jl")
+export Layer, Overlay, DebugLayer, DebugOverlay, LayerStack
+
 include("window.jl")
 export Window, OnUpdate
 
